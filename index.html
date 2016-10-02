@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Population Game v4.0</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container" align="center">
+	  		<h1><font color="white">Pop_v4</font></h1>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div style="width:100%">
+		<div style="float:left; width:50%">
+			<div style="float:left; width:10%">
+			</div>
+			<div style="float:right; width:90%">
+				<div id="output" style="height:300px;width:100%;border:5px solid #0ADA0A; font:14px/16px Times New Roman; overflow:auto;">
+					
+				</div>
+				
+				<br>
+				
+				<div class="progress">
+				  <div id="progress" name="progress" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+				    <span class="sr-only"></span>
+				  </div>
+				</div>
+				
+				<br>
+				
+				<div style="float: left; width=60%">
+					<!-- Buttons! Nice! __________________________________________________________ -->
+					<button id='next' type="button" class="btn btn-success">Next</button>
+
+					<br><br>
+					
+					<table style="width:100%">
+						<tr>
+							<td><button id='add_1p' type="button" class="btn btn-default">Add Person</button></td>
+							<td><button id='add_p' type="button" class="btn btn-default">Add People</button></td>
+						</tr>
+						<tr>
+							<td><button id="rem_1p" type="button" class="btn btn-default">Remove Person</button></td>
+							<td><button id='rem_p' type="button" class="btn btn-default">Remove People</button></td>
+						</tr>
+					</table>
+					
+				</div>
+				<div style="float: right; width=37%">
+					<button id='loop' type="button" class="btn btn-info">Loop</button>
+					<button id='stop' type="button" class="btn btn-danger">Stop</button>
+					<br>
+					<br>
+					<button id='b4chart' type="button" class="btn btn-info">Chart</button>
+					Special Family <input type="checkbox" value=1 id="spChild"></input>
+
+				</div>
+				
+
+				<p id = "body1"></p>
+			</div>
+		</div>
+		<div style="float:left; width:45%">
+			
+			<div style="height:300px;width:100%;border:5px solid #0ADA0A; font:14px/16px Times New Roman; overflow:auto;">
+				<table id="pop_display" style="width:100%">
+					
+				</table>
+			</div>
+  			<canvas id="myChart" width="500px" height="200px"></canvas>
+		</div>
+	</div>
+
+	
+
+
+	<div id='add_person' class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title">Add Person</h4>
+	      </div>
+	      <div class="modal-body">
+			
+	        <p>First Name: <input id='fn' type="text"></input></p>
+	        <p>Last Name: <input id='ln' type="text"></input></p>
+			<input type="radio" id = "male" name="gender" value=1> Male<br>
+			<input type="radio" id = "female" name="gender" value=0> Female<br>
+			Age: <input type="number" id = "age" name="age"><br>
+			Special: <input type="checkbox" id="special"></input>
+			
+	      </div>
+		    <font color="red"><p id="add_person_warning"></p></font>
+	      <div class="modal-footer">
+	        <button type="button" id="done_add_person" class="btn btn-default">Done</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	
+	
+	
+	<div id='add_people' class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title">Add People</h4>
+	      </div>
+	      <div class="modal-body">
+			
+			Number: <input type="number" id = "num_add"><br>
+			
+	      </div>
+		    <font color="red"><p id="add_people_warning"></p></font>
+	      <div class="modal-footer">
+	        <button type="button" id="done_add_people" class="btn btn-default">Done</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	
+	
+	
+	<div id='remove_people' class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title">Remove People</h4>
+	      </div>
+	      <div class="modal-body">
+			
+			Number: <input type="number" id = "num_remove"><br>
+			
+	      </div>
+		    <font color="red"><p id="remove_people_warning"></p></font>
+	      <div class="modal-footer">
+	        <button type="button" id="done_remove_people" class="btn btn-default">Done</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	
+	<script src="scripts/Chart.js"></script>
+	<script src="timer/jquery.timer.js"></script>
+	
+    <script src="scripts/Person.js"></script>
+	<script src="scripts/Town.js"></script>
+	<script src='scripts/myscript.js'></script>
+
+
+  </body>
+</html>
