@@ -30,6 +30,14 @@ var data = {
 			pointColor : "rgba(151,187,202,1)",
 			pointStrokeColor : "#fff",
 			data : [0,0,0,0,0,0,thisTown.pop.length]
+		},
+		{
+			data : [0,0,0,100,0,0,0],
+			fillColor : "rgba(0,0,0,0)",
+			pointColor : "rgba(0,0,0,0)",
+			pointStrokeColor : "rgba(0,0,0,0)",
+			strokeColor : "rgba(0,0,0,0)"
+
 		}
 	]
 }
