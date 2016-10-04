@@ -106,10 +106,10 @@ $(function() {
 			progress.setAttribute("style", "width: "+(parseInt(((++i)/$("#loops").val())*100))+"%");
 			thisTown.five_years_pass();
 			thisTown.disp();
-			$('#stop').click(function() {
-				timer.stop();
-			});
 		});
+	});
+	$('#stop').click(function() {
+		timer.stop();
 	});
 	
 });
